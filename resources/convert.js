@@ -1,6 +1,6 @@
 const SQUAT_WORDS = ['squat']
 const BENCH_PRESS_WORDS = ['bench', 'panca', 'paralimpica']
-const DEADLIFT_WORDS = ['deadlift', 'stacco']
+const DEADLIFT_WORDS = ['deadlift', 'stacco', 'stacchi']
 
 const WORDS = [SQUAT_WORDS, BENCH_PRESS_WORDS, DEADLIFT_WORDS]
 
@@ -56,7 +56,7 @@ CONVERT_BUTTON.onclick = () => {
 	let lastIndex = 0
 	let lastLift = 0
 	PERCENTAGE_MATCHES.forEach((p) => {
-		newProgram += PROGRAM.substring(lastIndex, p.index + p.match.length)
+		newProgram += PROGRAM.substring(lastIndex, p.index)
 		lastIndex = p.index + p.match.length
 		
 		while(WORDS_MATCHES.length > lastLift + 1 && WORDS_MATCHES[lastLift + 1].index < p.index){
@@ -66,8 +66,13 @@ CONVERT_BUTTON.onclick = () => {
 		
 		let percentage = parseFloat(p.match.replace('%', '').replace(/[,']/, '.')) / 100.0
 		let maximum = VALUES[index]
+		let value = Math.round(maximum * percentage * 100.0) / 100.0
+		percentage = Math.round(percentage * 10000.0) / 100.0
 		
-		newProgram += ' ' + maximum * percentage + 'Kg'
+		newProgram += percentage + '% ' + value + 'Kg'
+		if(PROGRAM.length > lastIndex && PROGRAM[lastIndex] != ' '){
+			newProgram += ' '
+		}
 	})
 	
 	newProgram += PROGRAM.substring(lastIndex, PROGRAM.length)
