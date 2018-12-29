@@ -1,6 +1,6 @@
 const SQUAT_WORDS = ['squat']
-const BENCH_PRESS_WORDS = ['bench', 'panca', 'paralimpica']
-const DEADLIFT_WORDS = ['deadlift', 'stacco', 'stacchi']
+const BENCH_PRESS_WORDS = ['bench', 'press', 'panca', 'paralimpica']
+const DEADLIFT_WORDS = ['deadlift', 'conventional', 'sumo', 'stacco', 'stacchi', 'classico']
 
 const WORDS = [SQUAT_WORDS, BENCH_PRESS_WORDS, DEADLIFT_WORDS]
 
